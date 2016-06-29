@@ -1,0 +1,28 @@
+<ion-navbar primary *navbar>
+  <ion-title>
+    Create a new account
+  </ion-title>
+</ion-navbar>
+
+
+<ion-content padding class="signup">
+  <img src="img/logo.png" class="auth-img">
+  <form (submit)="signupUser($event)">
+
+    <ion-item>
+      <ion-label stacked>Email</ion-label>
+      <ion-input [(ngModel)]="signupForm.email" type="email" placeholder="Your email address"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Password</ion-label>
+      <ion-input [(ngModel)]="signupForm.password" type="password" placeholder="Your password"></ion-input>
+    </ion-item>
+
+    <button block type="submit">
+      Create an Account
+    </button>
+
+  </form>
+
+</ion-content>
