@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 import {NavController, Alert} from 'ionic-angular';
 import {HomePage} from '../../pages/home/home';
-import {LoginPage} from '../../pages/login/login';
+import {LoginPage} from '../../pages/auth/login/login';
 import * as firebase from 'firebase';
 
 @Injectable()

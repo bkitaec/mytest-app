@@ -1,0 +1,32 @@
+
+.main-menu .main-menu-logo{
+}
+.main-menu .toolbar-title div{
+  position: relative;
+  bottom: 0;
+  left: 0;
+}
+
+/*, ion-page.show-page ion-content{
+  background: url('../../img/back-menu.jpg');
+  background-size: cover;
+  background-position: center;
+}*/
+ion-menu, ion-page.show-page{
+  background: url('../../img/back-menu.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+ion-content{
+  opacity: 0.9;
+}
+ion-page.lessons-view-page ion-content{
+  opacity: 1;
+}
+ion-menu ion-content{
+  background: transparent;
+}
+ion-menu .item{
+  opacity: 0.9;
+}

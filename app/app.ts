@@ -2,14 +2,14 @@
 import * as firebase from 'firebase';
 
 import { Component, ViewChild } from '@angular/core';
-import { App, ionicBootstrap, Platform, Nav } from 'ionic-angular';
+import { ionicBootstrap, Platform, Nav } from 'ionic-angular';
 import { StatusBar } from 'ionic-native';
 
 import {HomePage} from './pages/home/home';
-import {LoginPage} from './pages/login/login';
+import {LoginPage} from './pages/auth//login/login';
 
-import { Page1 } from './pages/page1/page1';
-import { Page2 } from './pages/page2/page2';
+import { TestPage } from './pages/test/test';
+import { LessonsPage } from './pages/lessons/lessons';
 
 @Component({
   templateUrl: 'build/app.html'
@@ -18,8 +18,9 @@ class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any;
+  logoUrl: string;
 
-  pages: Array<{title: string, component: any}>
+  pages: Array<{title: string, component: any, icon: string}>
   
   fbConf: any = {
     apiKey: "AIzaSyA8eJYS_VzNs4VGQQYKATSKg-0RYai3Azg",
@@ -30,11 +31,13 @@ class MyApp {
   
   constructor(private platform: Platform) {
     this.initializeApp();
+    this.logoUrl = "img/logo.png";
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Page uno', component: Page1 },
-      { title: 'Page dos', component: Page2 }
+      { title: 'Главная', component: HomePage, icon:"md-flower" },
+      { title: 'Уроки', component: LessonsPage, icon: "md-flower" },
+      { title: 'Тесты', component: TestPage, icon: "md-flower" }
     ];
         
     firebase.initializeApp(this.fbConf);

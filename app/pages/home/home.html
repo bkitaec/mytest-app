@@ -1,13 +1,27 @@
-<ion-navbar primary *navbar>
-  <ion-title>Home Page</ion-title>
-  <ion-buttons end>
-    <button (click)="logOut()"><ion-icon name="log-out"></ion-icon></button>
-  </ion-buttons>
-</ion-navbar>
+<ion-header >
+  <ion-navbar>
+    <button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Изучаем Китайский</ion-title>
+    <ion-buttons end>
+      <button (click)="logOut()"><ion-icon name="log-out"></ion-icon></button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
 
-<ion-content class="home" padding>
-  The world is your oyster.
+
+<ion-content padding class="home">
+
+  <h3>Здравия!</h3>
+
   <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
+    Очень увлекательный и сверхскоротной курс китайского языка.
   </p>
+  <p>
+    Полное погружение в китайскую культуру Вам гарантировано.
+  </p>
+
+  <button full outline danger menuToggle>начать</button>
+
 </ion-content>

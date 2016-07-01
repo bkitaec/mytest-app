@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-navbar>
+    <button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{title}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div [hidden]="inProgress">
+    <ion-list radio-group>
+      <ion-list-header>
+        Выбирите правильный ответ
+      </ion-list-header>
+      <ion-item *ngFor="opt a of options" (click)="checkAnswer($event, opt)">
+        <ion-label>{{answ}}</ion-label>
+        <ion-radio></ion-radio>
+      </ion-item>
+    </ion-list>
+  </div>
+  <div class="intro" [hidden]="!inProgress">
+    <p>Welcome to the QuizApp</p>
+    <button id="startQuiz" ng-click="start()">Start the Quiz</button>
+  </div>
+
+</ion-content>

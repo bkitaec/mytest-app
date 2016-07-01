@@ -5,7 +5,8 @@
 </ion-navbar>
 
 <ion-content padding class="login">
-  <img src="http://placehold.it/600x200" class="auth-img">
+  <img class="auth-img" src="/img/logo.png" center>
+
 
   <form (ngSubmit)="loginUser()">
 
@@ -20,17 +21,17 @@
     </ion-item>
 
     <button block type="submit">
-      Login
+      Авторизация
     </button>
 
   </form>
 
-  <button block clear (click)="goToSignup()">
-    Create a new account
+  <button block outline (click)="goToSignup()">
+    Создать аккаунт
   </button>
 
   <button block clear (click)="goToResetPassword()">
-    I forgot my password
+    Забыли пароль?
   </button>
 
 </ion-content>

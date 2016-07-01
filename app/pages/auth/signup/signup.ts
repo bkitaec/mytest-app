@@ -1,9 +1,9 @@
 import {NavController, Loading} from 'ionic-angular';
 import {Component} from '@angular/core';
-import {AuthData} from '../../providers/auth-data/auth-data';
+import {AuthData} from '../../../providers/auth-data/auth-data';
 
 @Component({
-  templateUrl: 'build/pages/signup/signup.html',
+  templateUrl: 'build/pages/auth/signup/signup.html',
   providers: [AuthData]
 })
 export class SignupPage {
