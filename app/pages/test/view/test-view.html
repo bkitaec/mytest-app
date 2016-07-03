@@ -8,20 +8,54 @@
 </ion-header>
 
 <ion-content>
-  <div [hidden]="inProgress">
-    <ion-list radio-group>
-      <ion-list-header>
-        Выбирите правильный ответ
-      </ion-list-header>
-      <ion-item *ngFor="opt a of options" (click)="checkAnswer($event, opt)">
-        <ion-label>{{answ}}</ion-label>
-        <ion-radio></ion-radio>
-      </ion-item>
-    </ion-list>
+  <div [hidden]="!inProgress || quizOver">
+    <ion-card>
+      <ion-card-content>
+        <ion-card-title>
+          {{question}}
+        </ion-card-title>
+        <p>
+          Выбирите правильный ответ:
+        </p>
+      </ion-card-content>
+      <ion-list radio-group>
+        <ion-item *ngFor="let opt of options" >
+          <ion-label>{{opt}}</ion-label>
+          <ion-radio (click)="checkAnswer($event, opt)"></ion-radio>
+        </ion-item>
+      </ion-list>
+     </ion-card>
+    <button full outline padding [hidden]="answerMode" (click)="nextQuestion()">
+      Следующий вопрос
+    </button>
+
   </div>
-  <div class="intro" [hidden]="!inProgress">
-    <p>Welcome to the QuizApp</p>
-    <button id="startQuiz" ng-click="start()">Start the Quiz</button>
+  <div padding class="intro" [hidden]="inProgress">
+    <ion-card>
+      <ion-card-content>
+        <ion-card-title text-center>
+          Готовы?
+        </ion-card-title>
+        <button full outline danger id="startQuiz" (click)="start()">Начать</button>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <div [hidden]="!quizOver">
+    <ion-card>
+      <ion-card-content>
+        <ion-card-title>
+          Ваш результат
+        </ion-card-title>
+        <p>
+          {{score}} из {{id}}
+        </p>
+      </ion-card-content>
+    </ion-card>
+    <button full outline padding (click)="reset()">
+      начать сначала
+    </button>
+
   </div>
 
 </ion-content>
