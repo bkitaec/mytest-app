@@ -11,8 +11,12 @@ import {LoginPage} from './pages/auth//login/login';
 import { TestPage } from './pages/test/test';
 import { LessonsPage } from './pages/lessons/lessons';
 
+import {AudioProvider, WebAudioProvider} from 'ionic-audio/dist/ionic-audio';
+import {Type, provide} from '@angular/core';
+
 @Component({
-  templateUrl: 'build/app.html'
+  templateUrl: 'build/app.html',
+  providers:  [provide(AudioProvider,  { useFactory: AudioProvider.factory })] // or use [WebAudioProvider] to force HTML5 Audio
 })
 class MyApp {
   @ViewChild(Nav) nav: Nav;

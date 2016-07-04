@@ -25,6 +25,8 @@
         </ion-item>
       </ion-list>
      </ion-card>
+    <span full text-center secondary [hidden]="!correctAns">Верно</span>
+    <span full text-center danger [hidden]="!inCorrectAns">Не верно</span>
     <button full outline padding [hidden]="answerMode" (click)="nextQuestion()">
       Следующий вопрос
     </button>

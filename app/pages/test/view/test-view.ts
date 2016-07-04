@@ -14,6 +14,7 @@ export class TestViewPage {
   inProgress : boolean;
   quizOver : boolean;
   correctAns : boolean;
+  inCorrectAns : boolean;
 
   score : number;
 
@@ -67,13 +68,16 @@ export class TestViewPage {
       this.score++;
       this.correctAns = true;
     } else {
-      this.correctAns = false;
+      this.inCorrectAns = true;
     }
     this.answerMode = false;
   }
 
   nextQuestion() {
     this.id++;
+    this.correctAns = false;
+    this.inCorrectAns = false;
+
     this.getQuestion();
   }
 }
