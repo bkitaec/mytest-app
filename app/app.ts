@@ -1,6 +1,3 @@
-/// <reference path="../node_modules/angularfire2/firebase3.d.ts" />
-import * as firebase from 'firebase';
-
 import { Component, ViewChild } from '@angular/core';
 import { ionicBootstrap, Platform, Nav } from 'ionic-angular';
 import { StatusBar } from 'ionic-native';
@@ -14,6 +11,7 @@ import { LessonsPage } from './pages/lessons/lessons';
 import {AudioProvider, WebAudioProvider} from 'ionic-audio/dist/ionic-audio';
 import {Type, provide} from '@angular/core';
 
+
 @Component({
   templateUrl: 'build/app.html',
   providers:  [provide(AudioProvider,  { useFactory: AudioProvider.factory })] // or use [WebAudioProvider] to force HTML5 Audio
@@ -25,13 +23,7 @@ class MyApp {
   logoUrl: string;
 
   pages: Array<{title: string, component: any, icon: string}>
-  
-  fbConf: any = {
-    apiKey: "AIzaSyA8eJYS_VzNs4VGQQYKATSKg-0RYai3Azg",
-    authDomain: "project-7794296316400472128.firebaseapp.com",
-    databaseURL: "https://project-7794296316400472128.firebaseio.com",
-    storageBucket: "project-7794296316400472128.appspot.com"
-  };
+
   
   constructor(private platform: Platform) {
     this.initializeApp();
@@ -44,9 +36,7 @@ class MyApp {
       { title: 'Тесты', component: TestPage, icon: "md-flower" }
     ];
         
-    firebase.initializeApp(this.fbConf);
-    firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
+      if (true) {
         // If there's a user take him to the home page.
         this.rootPage=HomePage;
         this.nav.setRoot(HomePage);

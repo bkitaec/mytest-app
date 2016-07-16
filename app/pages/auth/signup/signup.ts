@@ -1,27 +1,28 @@
 import {NavController, Loading} from 'ionic-angular';
 import {Component} from '@angular/core';
-import {AuthData} from '../../../providers/auth-data/auth-data';
+import {Auth} from '../../../providers/auth/auth';
 
 @Component({
   templateUrl: 'build/pages/auth/signup/signup.html',
-  providers: [AuthData]
+  providers: [Auth]
 })
 export class SignupPage {
   public signupForm: any = {
+    username:'',
     email:'',
     password:''
   };
 
-  constructor(public nav: NavController, public authData: AuthData) {
+  constructor(public nav: NavController, public auth: Auth) {
     this.nav = nav;
-    this.authData = authData;
+    this.auth = auth;
 
 
   }
 
   signupUser(event){
     event.preventDefault();
-    this.authData.signupUser(this.signupForm.email, this.signupForm.password);
+    this.auth.signUp(this.signupForm);
     let loading = Loading.create({
       dismissOnPageChange: true,
     });

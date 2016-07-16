@@ -1,13 +1,14 @@
 import {NavController, Loading} from 'ionic-angular';
 import {Component} from '@angular/core';
-import {AuthData} from '../../../providers/auth-data/auth-data';
+import {Auth} from '../../../providers/auth/auth';
 import {Notification} from '../../../providers/notification/notification';
 import {SignupPage} from '../signup/signup';
 import {ResetPasswordPage} from '../reset-password/reset-password';
+import 'rxjs/add/operator/map';
 
 @Component({
   templateUrl: 'build/pages/auth/login/login.html',
-  providers: [AuthData, Notification]
+  providers: [Notification, Auth]
 })
 export class LoginPage {
   public loginForm: any = {
@@ -17,21 +18,24 @@ export class LoginPage {
   };
 
 
-  constructor(public nav: NavController, public authData: AuthData, public notif: Notification) {
+  constructor(public nav: NavController, public notif: Notification, public auth:Auth) {
     this.nav = nav;
     this.notif = notif;
-    this.authData = authData;
+    this.auth = auth;
 
   }
 
   loginUser(){
     console.log(this.loginForm);
-    this.authData.loginUser(this.loginForm.email, this.loginForm.password);
-    this.notif.load();
-    // let loading = Loading.create({
-    //   dismissOnPageChange: true,
-    // });
-    // this.nav.present(loading);
+    
+    let res = this.auth.login(this.loginForm.email, this.loginForm.password);
+    console.log("RESSSULT");
+    console.log(res);
+
+    let loading = Loading.create({
+      dismissOnPageChange: true,
+    });
+    this.nav.present(loading);
   }
 
   goToSignup(){
