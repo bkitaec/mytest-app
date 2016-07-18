@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { ionicBootstrap, Platform, Nav } from 'ionic-angular';
+import { ionicBootstrap, Platform, Nav, NavController } from 'ionic-angular';
 import { StatusBar } from 'ionic-native';
 
 import {HomePage} from './pages/home/home';
@@ -19,7 +19,7 @@ import {Type, provide} from '@angular/core';
 class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any;
+  rootPage: any = HomePage;
   logoUrl: string;
 
   pages: Array<{title: string, component: any, icon: string}>
@@ -36,17 +36,16 @@ class MyApp {
       { title: 'Тесты', component: TestPage, icon: "md-flower" }
     ];
         
-      if (true) {
+      //if (true) {
         // If there's a user take him to the home page.
-        this.rootPage=HomePage;
-        this.nav.setRoot(HomePage);
-      } else {
-        // If there's no user logged in send him to the LoginPage
-        this.rootPage=LoginPage;
-        this.nav.setRoot(LoginPage);
-
-      }
-    });
+        //this.rootPage=HomePage;
+        //this.nav.setRoot(HomePage);
+      //} else {
+      //  // If there's no user logged in send him to the LoginPage
+      //  this.rootPage=LoginPage;
+      //  this.nav.setRoot(LoginPage);
+      //
+      //}
   }
 
   initializeApp() {
