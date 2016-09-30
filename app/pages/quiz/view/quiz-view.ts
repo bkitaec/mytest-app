@@ -3,12 +3,10 @@ import { NavController, NavParams } from 'ionic-angular';
 
 
 @Component({
-  templateUrl: 'build/pages/test/view/test-view.html',
+  templateUrl: 'build/pages/quiz/view/quiz-view.html'
+})
 
-})
-@Component({
-})
-export class TestViewPage {
+export class QuizViewPage {
 
   id : number;
   inProgress : boolean;
@@ -26,12 +24,11 @@ export class TestViewPage {
   qestions: any = [];
   title: string;
 
-  constructor(private nav: NavController,  private navParams: NavParams) {
-    let answ = this.navParams.get('test');
-    for(let i = 1; i <  answ.list.length; i++) {
-      this.qestions.push(answ.list[i]);
-    }
-    this.title = this.navParams.get('test').title;
+  constructor(private nav:NavController,  private navParams: NavParams) {
+    let quiz = this.navParams.get('quiz');
+
+    this.qestions = this.navParams.get('question');
+    this.title = quiz.title;
     this.reset();
   }
 
@@ -50,12 +47,13 @@ export class TestViewPage {
   getQuestion() {
     let q = this.qestions[this.id];
     if(q) {
-      this.question = q.q;
+      this.question = q.question;
       this.options = [];
-      for(let i = 1; i <  q.v.length; i++) {
-        this.options.push(q.v[i]);
+      for(let i = 0; i <  q.answers.length; i++) {
+        if(q.answers[i].correct)
+          this.answer = i;
+        this.options.push(q.answers[i]);
       }
-      this.answer = q.a;
       this.answerMode = true;
     } else {
       this.quizOver = true;
@@ -64,7 +62,7 @@ export class TestViewPage {
   }
 
   checkAnswer(e, opt) {
-    if(opt === this.options[this.answer-1]) {
+    if(opt === this.options[this.answer]) {
       this.score++;
       this.correctAns = true;
     } else {

@@ -20,7 +20,7 @@
       </ion-card-content>
       <ion-list radio-group>
         <ion-item *ngFor="let opt of options" >
-          <ion-label>{{opt}}</ion-label>
+          <ion-label>{{opt.answer}}</ion-label>
           <ion-radio (click)="checkAnswer($event, opt)"></ion-radio>
         </ion-item>
       </ion-list>

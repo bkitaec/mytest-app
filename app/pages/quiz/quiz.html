@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-navbar>
+    <button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Тесты</ion-title>
+      <ion-buttons start>
+      </ion-buttons>
+      <ion-buttons end>
+        <button (click)="goToStatistics">
+          <ion-icon name='stats'></ion-icon>
+        </button>
+      </ion-buttons>
+
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content class="card-background-page">
+  <ion-card *ngFor="let category of categorys" (click)="itemTapped($event, category)">
+    <img src="img/category/quiz/{{category.id}}.jpg"/>
+    <div class="card-title">{{category.name}}</div>
+  </ion-card>
+</ion-content>

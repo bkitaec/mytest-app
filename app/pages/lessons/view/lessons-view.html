@@ -8,19 +8,19 @@
 </ion-header>
 
 <ion-content>
-  <div padding [innerHTML]="lesson.content"></div>
-
   <ion-list>
-    <audio-track #audio *ngFor="let track of myTracks"  [track]="track" (onFinish)="onTrackFinished($event)">
-      <ion-item>
-        <ion-thumbnail item-left>
-          <audio-track-play dark [audioTrack]="audio"><ion-spinner></ion-spinner></audio-track-play>
-        </ion-thumbnail>
-
-        <p><strong>{{audio.title}}</strong></p>
-        <audio-track-progress-bar dark duration progress [audioTrack]="audio" [ngStyle]="{visibility: audio.completed > 0 ? 'visible' : 'hidden'}"></audio-track-progress-bar>
-      </ion-item>
-    </audio-track>
+    <ion-item *ngFor="let content of lesson.contents">
+        <ion-card>
+          <ion-card-content *ngIf="content.content" [innerHTML]="content.content">
+          </ion-card-content>
+          <ion-item *ngIf="content.audio">
+            <ion-note *ngIf="track.completed > 0 && track.duration > 0 && content.audio == is_this_audio" item-left>{{track.progress | audioTime}} / {{track.duration | audioTime}} - {{track.completed | percent}}</ion-note>
+            <button (click)="play(content.audio)" primary clear item-right>
+              <ion-icon name="navigate"></ion-icon>
+              прослушать
+            </button>
+          </ion-item>
+        </ion-card>
+    </ion-item>
   </ion-list>
-
 </ion-content>

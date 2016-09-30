@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-navbar>
+    <button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Уроки китайского</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="lesons-list">
+  <div style="display: flex; flex-wrap: wrap; align-items: stretch;">
+    <div *ngFor="let lesson of lessons; let i = index" style="flex: 0 0 calc( 100% / 2 - 3px );">
+      <button danger (click)="itemTapped($event, lesson)">
+        <ion-icon class="icon-left" name="ios-leaf-outline" secondary large item-left></ion-icon>
+        {{i+1}}
+        <span>урок</span>
+      </button>
+      <ion-icon class="icon-right" name="arrow-dropright-circle" large secondary></ion-icon>
+    </div>
+  </div>
+
+
+
+  <!--<ion-list>
+    <button ion-item *ngFor="let lesson of lessons" (click)="itemTapped($event, lesson)">
+      <ion-icon name="ios-leaf-outline" secondary large item-left></ion-icon>
+      {{lesson.title}}
+    </button>
+  </ion-list>-->
+<!--  <div *ngIf="selectedItem" padding>
+    You navigated here from <b>{{selectedItem.title}}</b>
+  </div>-->
+</ion-content>

@@ -1,3 +1,43 @@
-.lessons {
+.card-background-page {
 
+  ion-card {
+    img{
+      height: 100%;
+    }
+    position: relative;
+    text-align: left;
+    height: 150px;
+    border-radius: 0 30px;
+  }
+
+  .even{
+    text-align: right;
+  }
+  .card-title {
+    position: absolute;
+    bottom: 3%;
+    font-size: 2.0em;
+    width: 100%;
+    font-weight: bold;
+    color: #fff;
+    padding: 5px 13px;
+  }
+
+  /*
+  .card-subtitle {
+    font-size: 1.0em;
+    position: absolute;
+    top: 52%;
+    width: 100%;
+    color: #fff;
+  }
+  */
+}
+
+ion-card-content{
+  white-space: normal;
+}
+
+.item p{
+    font-size: 16px;
 }

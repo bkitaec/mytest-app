@@ -5,16 +5,17 @@ import { StatusBar } from 'ionic-native';
 import {HomePage} from './pages/home/home';
 import {LoginPage} from './pages/auth//login/login';
 
-import { TestPage } from './pages/test/test';
+import { QuizPage } from './pages/quiz/quiz';
 import { LessonsPage } from './pages/lessons/lessons';
 
 import {AudioProvider, WebAudioProvider} from 'ionic-audio/dist/ionic-audio';
 import {Type, provide} from '@angular/core';
+import {Auth} from './providers/auth/auth';
 
 
 @Component({
   templateUrl: 'build/app.html',
-  providers:  [provide(AudioProvider,  { useFactory: AudioProvider.factory })] // or use [WebAudioProvider] to force HTML5 Audio
+  providers: [Auth, provide(AudioProvider,  { useFactory: AudioProvider.factory })]
 })
 class MyApp {
   @ViewChild(Nav) nav: Nav;
@@ -31,9 +32,9 @@ class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Главная', component: HomePage, icon:"md-flower" },
-      { title: 'Уроки', component: LessonsPage, icon: "md-flower" },
-      { title: 'Тесты', component: TestPage, icon: "md-flower" }
+      { title: 'Главная', component: HomePage, icon:"md-sunny" },
+      { title: 'Уроки', component: LessonsPage, icon: "md-list-box" },
+      { title: 'Тесты', component: QuizPage, icon: "md-checkmark-circle-outline" }
     ];
         
       //if (true) {
@@ -48,6 +49,20 @@ class MyApp {
       //}
   }
 
+  // ngOnInit() {
+  //   this.af.auth.subscribe(data => {
+  //     if (data) {
+  //       this.authInfo = data;
+  //     } else {
+  //       this.authInfo = null;
+  //       this.showLoginModal();
+  //     }
+  //   });
+  // }
+  // showLoginModal() {
+  //   let loginPage = Modal.create(AuthPage);
+  //   this.navCtrl.present(loginPage);
+  // }
   initializeApp() {
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -63,4 +78,11 @@ class MyApp {
   }
 }
 
-ionicBootstrap(MyApp);
+ionicBootstrap(MyApp, [], {
+  backButtonText: '',
+  iconMode: 'ios',
+  modalEnter: 'modal-slide-in',
+  modalLeave: 'modal-slide-out',
+  tabbarPlacement: 'bottom',
+  pageTransition: 'ios',
+});

@@ -7,14 +7,11 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
-  <ion-list>
-    <button ion-item *ngFor="let lesson of lessons" (click)="itemTapped($event, lesson)">
-      <ion-icon name="paper-plane" item-left></ion-icon>
-      {{lesson.title}}
-    </button>
-  </ion-list>
-<!--  <div *ngIf="selectedItem" padding>
-    You navigated here from <b>{{selectedItem.title}}</b>
-  </div>-->
+<ion-content class="card-background-page">
+  <ion-card *ngFor="let category of categorys" (click)="itemTapped($event, category)">
+    <img src="img/category/{{category.id}}.jpg"/>
+    <div class="card-title {{category.id%2?'odd':'even'}}">{{category.name}}</div>
+  </ion-card>
+
+
 </ion-content>

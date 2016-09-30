@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-navbar>
+    <button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Выберите тему тестов</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <button ion-item *ngFor="let quiz of quizs" (click)="itemTapped($event, quiz)">
+      <ion-icon name="ios-leaf-outline" large item-left></ion-icon>
+      {{quiz.title}}
+    </button>
+  </ion-list>
+  <!--  <div *ngIf="selectedItem" padding>
+      You navigated here from <b>{{selectedItem.title}}</b>
+    </div>-->
+</ion-content>

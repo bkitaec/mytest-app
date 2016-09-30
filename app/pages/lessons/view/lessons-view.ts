@@ -1,8 +1,7 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { Component, Provider } from '@angular/core';
+import { NavController, NavParams, Toast } from 'ionic-angular';
 
-import {AudioTrackComponent, AudioTrackPlayComponent, AudioTrackProgressComponent, AudioTrackProgressBarComponent, AudioTimePipe, AudioProvider} from 'ionic-audio/dist/ionic-audio';
-
+import {WebAudioTrack, IAudioTrack, AudioTimePipe} from 'ionic-audio/dist/ionic-audio';
 /*
   Generated class for the LessonsViewPage page.
 
@@ -11,50 +10,49 @@ import {AudioTrackComponent, AudioTrackPlayComponent, AudioTrackProgressComponen
 */
 @Component({
   templateUrl: 'build/pages/lessons/view/lessons-view.html',
-  directives: [AudioTrackComponent, AudioTrackPlayComponent, AudioTrackProgressComponent, AudioTrackProgressBarComponent],
+  pipes: [AudioTimePipe],
 })
 export class LessonsViewPage {
   lesson: any;
+  track: IAudioTrack;
+  is_play: boolean = false;
+  is_this_audio: string;
+  is_was_toast: boolean = false;
 
-  myTracks: any[];
-  allTracks: any[];
-  singleTrack: any;
-
-  constructor(private nav: NavController, private navParams: NavParams, private _audioProvider: AudioProvider) {
+  constructor(private nav: NavController, private navParams: NavParams) {
     this.lesson = navParams.get('lesson');
-
-    this.myTracks = [{
-      src: 'https://firebasestorage.googleapis.com/v0/b/project-7794296316400472128.appspot.com/o/lessons%2F222.mp3?alt=media&token=386155fa-a003-45ba-a4fc-7e37883e9ec2',
-      title: 'First mantra',
-      //preload: 'none'
-    },
-      {
-        src: 'https://archive.org/download/swrembel2010-03-07.tlm170.flac16/swrembel2010-03-07s1t05.mp3',
-        title: 'Second mantra',
-        //preload: 'none'
-      }];
-
-    this.singleTrack = {
-      src: 'https://archive.org/download/swrembel2010-03-07.tlm170.flac16/swrembel2010-03-07s1t05.mp3',
-      title: 'Stephane Wrembel Live',
-      preload: 'metadata' // tell the plugin to preload metadata such as duration for this track
-    };
+    this.track = new WebAudioTrack('');
+    console.log(this.track);
   }
 
-  ngAfterContentInit() {
-    // get all tracks managed by AudioProvider so we can control playback via the API
-    this.allTracks = this._audioProvider.tracks;
+  play(audio){
+    if(audio !== this.is_this_audio){
+      this.is_play = false;
+      this.track.pause();
+    }
+
+    if(!this.is_play){
+      this.is_this_audio = audio;
+      this.track = new WebAudioTrack('http://185.143.173.210:1309/' + audio);
+      this.is_play = true;
+      this.track.play();
+      if(this.is_was_toast)
+        this.playToast('Слушаем внимательно')
+    }else{
+      this.is_play = false;
+      this.track.pause();
+    }
   }
 
-  playSomeTrack(selectedTrackIndex: number) {
-    // do something with the track in response to some action
-    this._audioProvider.play(selectedTrackIndex);
-  }
+  playToast(msg){
+      let toast = Toast.create({
+        message: msg,
+        duration: 2000,
+        position: 'bottom'
+      });
 
-  onTrackFinished(track: any) {
-    console.log('Track finished', track)
-  }
-
+      this.nav.present(toast);
+    }
 
 
 }

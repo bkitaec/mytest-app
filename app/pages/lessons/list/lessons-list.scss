@@ -1,0 +1,31 @@
+.lesons-list{
+  ion-icon.icon-right {
+    position: relative;
+    top: 22px;
+    left: 40px;
+    font-size: 30px;
+    color: #f1c722;
+  }
+}
+.lesons-list button{
+  ion-icon.icon-left {
+    position: absolute;
+    top: 40px;
+    left: 10px;
+    font-size: 30px;
+    color: yellow;
+  }
+
+  .button-inner span{
+    font-size: 9px;
+    padding-left: 3px;
+  }
+
+  margin: 5px auto;
+  border-radius: 50% !important;
+  width: 85px;
+  height: 85px;
+  font-size: 30px;
+  left: 27%;
+  top: 10px;
+}

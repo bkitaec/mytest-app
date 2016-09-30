@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import {NavController, Loading} from 'ionic-angular';
+import { NavController, Loading, Alert } from 'ionic-angular';
+import { HomePage } from '../../pages/home/home';
 
 
 @Injectable()
 export class Notification {
-  data: any;
 
   constructor(public nav: NavController) {
     this.nav = nav;
@@ -16,5 +16,25 @@ export class Notification {
     });
     this.nav.present(loading);
   }
+
+  alert(msg) {
+    let prompt = Alert.create({
+      message: msg,
+      buttons: [{text: "Ok"}]
+    });
+    this.nav.present(prompt);
+  }
+  
+  alertAndGoHome(msg) {
+    let prompt = Alert.create({
+      message: msg,
+      buttons: [{text: "Ok"}]
+    });
+    this.nav.present(prompt);
+
+    // this.nav.push(HomePage);
+
+  }
+
 }
 
